@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  verdaccio:
+    image: verdaccio/verdaccio:nightly-master
+    container_name: verdaccio
+    ports:
+      - 4873:4873
+    volumes:
+      - './storage:/verdaccio/storage'
+      - './config:/verdaccio/conf'
+      - './plugins:/verdaccio/plugins'
+    restart: always
+
+volumes:
+  verdaccio:
+    driver: local
+
+configs:
+  httpd-config:
+    external: true
